@@ -28,3 +28,9 @@ header {
     padding: 2%;
     color: white;
 }
+
+.recent-search-btn {
+    background-color: lightgray;
+    border-radius: 10px;
+    color: black;
+}
