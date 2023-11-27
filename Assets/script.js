@@ -1,6 +1,6 @@
 var searchBtnEl = $('#search-button');
 var citySearchEL = $('#city-search');
-// citySearchEL.val("");
+citySearchEL.val("");
 var cityLocation = [];
 
 // Convert City Name to Lat & Lon Coordinates //
