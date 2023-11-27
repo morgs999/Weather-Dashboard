@@ -25,42 +25,61 @@
 
 
     <section class="row m-3 p-3">
-
-        <div class="col-12 col-md-4 col-lg-3">
+        <!-- SEARCH BLOCK -->
+        <div class="col-12 col-md-4 col-lg-3 search-block">
             <h2>City Search</h2>
             <input type="text" class="form-control form-control-lg search" placeholder="Search for City"
                 id="city-search" name="city-search">
 
-            <button type="button" class="btn btn-dark btn-block mt-3" id="search-button">
+            <button type="button" class="btn btn-dark col-12 mt-3" id="search-button">
                 Search
 
                 <!-- Save Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-                    viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-search mx-3" viewBox="0 0 16 16">
                     <path
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
 
             </button>
             <hr>
-            <button type="button" class="btn btn-light btn-block" id="recent-search"></button>
         </div>
 
-
+        <!-- CITY FORECAST BLOCK -->
         <div class="container col-12 col-md-8 col-lg-9 city">
 
             <div class="container single-city">
-                <h4>Single City</h4>
+                <h4>Search for your city!</h4>
             </div>
 
             <div class="container five-day">
                 <h5>5-Day Forecast</h5>
-                <div class="row">
-                    <p class="day-block col-12 col-md-6 col-lg-2">Day 1</p>
-                    <p class="day-block col-12 col-md-6 col-lg-2">Day 2</p>
-                    <p class="day-block col-12 col-md-6 col-lg-2">Day 3</p>
-                    <p class="day-block col-12 col-md-6 col-lg-2">Day 4</p>
-                    <p class="day-block col-12 col-md-6 col-lg-2">Day 5</p>
+                <div class="row forecast-block">
+                    <card class="day-block col-12 col-md-6 col-lg-2">
+                        <h6 class="temp">Temp: </h6>
+                        <h6 class="wind">Wind: </h6>
+                        <h6 class="humidity">Humidity: </h6>
+                    </card>
+                    <card class="day-block col-12 col-md-6 col-lg-2">
+                        <h6 class="temp">Temp: </h6>
+                        <h6 class="wind">Wind: </h6>
+                        <h6 class="humidity">Humidity: </h6>
+                    </card>
+                    <card class="day-block col-12 col-md-6 col-lg-2">
+                        <h6 class="temp">Temp: </h6>
+                        <h6 class="wind">Wind: </h6>
+                        <h6 class="humidity">Humidity: </h6>
+                    </card>
+                    <card class="day-block col-12 col-md-6 col-lg-2">
+                        <h6 class="temp">Temp: </h6>
+                        <h6 class="wind">Wind: </h6>
+                        <h6 class="humidity">Humidity: </h6>
+                    </card>
+                    <card class="day-block col-12 col-md-6 col-lg-2">
+                        <h6 class="temp">Temp: </h6>
+                        <h6 class="wind">Wind: </h6>
+                        <h6 class="humidity">Humidity: </h6>
+                    </card>
                 </div>
             </div>
 
@@ -77,6 +96,8 @@
         crossorigin="anonymous"></script>
     <!-- JQuery Library -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- DAY JS -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <!-- MY JS -->
     <script src="./Assets/script.js"></script>
 </body>
