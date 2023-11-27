@@ -7,7 +7,7 @@ citySearchEL.val("");
 
 // Set Dates for 5 Day Forecast //
 for (var i = 0; i < 5; i++) {
-    var today = dayjs().add(i, 'day');
+    var today = dayjs().add(i + 1, 'day');
     forecastBlockEl.children('card')[i].append(today.format('MM / D / YY'));
 }
 
@@ -15,13 +15,13 @@ for (var i = 0; i < 5; i++) {
 // and plug into the search parameters of API //
 let convert = function () {
     let cityLocation = [];
-    let cityData = {
-        temp: 0,
-        wind: 0,
-        humidity: 0,
-    }
+    // let cityData = {
+    //     temp: 0,
+    //     wind: 0,
+    //     humidity: 0,
+    // }
     // Fetch Weather Info based on City Name //
-    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + citySearchEL.val() + '&limit=1&appid=dd2b5626d7f843dd14d416ea538ca245')
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + citySearchEL.val() + '&limit=1&appid=dd2b5626d7f843dd14d416ea538ca245&units=metric')
         .then(function (response) {
             return response.json();
         })
@@ -31,27 +31,30 @@ let convert = function () {
             cityLocation.push(data[0].lon);
 
             // Push converted LAT and LON data to Weather Search and return DATA needed //
-            fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + cityLocation[0] + '&lon=' + cityLocation[1] + '&appid=dd2b5626d7f843dd14d416ea538ca245')
+            fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + cityLocation[0] + '&lon=' + cityLocation[1] + '&appid=dd2b5626d7f843dd14d416ea538ca245&units=imperial')
 
                 .then(function (response) {
                     return response.json();
                 })
                 .then(function (data) {
-                    cityData.temp = data.list[0].main.temp;
-                    cityData.wind = data.list[0].wind.speed;
-                    cityData.humidity = data.list[0].main.humidity;
-                    console.log(cityData.temp);
-                })
-            console.log(cityData.temp);
-        })
-    console.log(cityData);
-    $(forecastBlockEl).each(function () {
-        $('.temp').append(cityData.temp);
-        $('.wind').append(cityData.wind);
-        $('.humidity').append(cityData.humidity);
 
-    })
+                    console.log(data);
+
+                    // $(dayBlockEl).each(function () {
+                    for (var i = 0; i < 40; i += 8) {
+                        let dayBlockEl = $('.day-block');
+                        let forecastBlockEl = $('.forecast-block');
+                        forecastBlockEl.children('.temp').text('Temp(F): ' + data.list[i].main.temp)
+                        console.log(data.list[i].main.temp);
+                        // $('.temp').text('Temp(F): ' + data.list[i].main.temp);
+                        // $('.wind').text('Wind(mph): ' + data.list[1].wind.speed);
+                        // $('.humidity').text('Hummidity: ' + data.list[2].main.humidity);
+                    }
+                })
+        }
+        )
 }
+
 
 // Search Button Actions //
 $(searchBtnEl).on('click', function () {
