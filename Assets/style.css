@@ -26,6 +26,23 @@ h4 {
     justify-content: space-around;
 }
 
+.date-block {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.date-card {
+    background-color: sienna;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-weight: 300;
+    font-size: 112%;
+}
+
 .day-block {
     background-color: rgb(18, 18, 89);
     border: 2px solid white;
@@ -44,9 +61,3 @@ h4 {
     font-size: 185%;
     font-weight: 700;
 }
-
-/* .recent-search-button {
-    background-color: lightgray;
-    border-radius: 10px;
-    color: black;
-} */
