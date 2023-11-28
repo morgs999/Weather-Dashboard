@@ -1,19 +1,21 @@
 var searchBtnEl = $('#search-button');
 var citySearchEL = $('#city-search');
-var forecastBlockEl = $('.forecast-block');
+var forecastBlockEL = $('.forecast-block');
+// var forecastBlockEl = document.getElementsByClassName("forecast-block");
 var dayBlockEl = $('.day-block');
 citySearchEL.val("");
 
 
 // Set Dates for 5 Day Forecast //
-for (var i = 0; i < 5; i++) {
-    var today = dayjs().add(i + 1, 'day');
-    forecastBlockEl.children('card')[i].append(today.format('MM / D / YY'));
-}
+// for (var i = 0; i < 5; i++) {
+//     var today = dayjs().add(i + 1, 'day');
+//     forecastBlockEL.children('card')[i].append(today.format('MM / D / YY'));
+// }
 
 // Convert City Name to Lat & Lon Coordinates //
 // and plug into the search parameters of API //
 let convert = function () {
+
     let cityLocation = [];
     // let cityData = {
     //     temp: 0,
@@ -40,15 +42,21 @@ let convert = function () {
 
                     console.log(data);
 
-                    // $(dayBlockEl).each(function () {
+                    // target parent div (forecast block) set inner html to ""
+                    // create a card, add classes in, appenchild(h6), .text (data[i]), append card to parent div
+                    forecastBlockEL.html("");
                     for (var i = 0; i < 40; i += 8) {
-                        let dayBlockEl = $('.day-block');
-                        let forecastBlockEl = $('.forecast-block');
-                        forecastBlockEl.children('.temp').text('Temp(F): ' + data.list[i].main.temp)
-                        console.log(data.list[i].main.temp);
-                        // $('.temp').text('Temp(F): ' + data.list[i].main.temp);
-                        // $('.wind').text('Wind(mph): ' + data.list[1].wind.speed);
-                        // $('.humidity').text('Hummidity: ' + data.list[2].main.humidity);
+                        $(".forecast-block").append("<card>")
+                        $("card").addClass('day-block', 'col-12 col-md-6 col-lg-2');
+                        $('.day-block').append('<h4 class="temp"></h4>');
+                        $('.day-block').append('<h4 class="wind"></h4>');
+                        $('.day-block').append('<h4 class="humidity"></h4>');
+                        $('.day-block').append('<h4 class="date"></h4>');
+                        $('.temp').text('Temp: ' + data.list[i].main.temp);
+                        $('.wind').text('Wind: ' + data.list[i].wind.speed);
+                        $('.humidity').text('Humidity: ' + data.list[i].main.humidity);
+                        var today = dayjs().add(1, 'day');
+                        $('.date').text(today.format('MM / D / YY'));
                     }
                 })
         }
