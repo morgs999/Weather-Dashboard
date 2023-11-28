@@ -7,10 +7,10 @@ citySearchEL.val("");
 
 
 // Set Dates for 5 Day Forecast //
-// for (var i = 0; i < 5; i++) {
-//     var today = dayjs().add(i + 1, 'day');
-//     forecastBlockEL.children('card')[i].append(today.format('MM / D / YY'));
-// }
+for (var i = 0; i < 5; i++) {
+    var today = dayjs().add(i + 1, 'day');
+    forecastBlockEL.children('card')[i].append(today.format('MM / D / YY'));
+}
 
 // Convert City Name to Lat & Lon Coordinates //
 // and plug into the search parameters of API //
@@ -42,22 +42,22 @@ let convert = function () {
 
                     console.log(data);
 
-                    // target parent div (forecast block) set inner html to ""
-                    // create a card, add classes in, appenchild(h6), .text (data[i]), append card to parent div
+
+
                     forecastBlockEL.html("");
+
                     for (var i = 0; i < 40; i += 8) {
-                        $(".forecast-block").append("<card>")
-                        $("card").addClass('day-block', 'col-12 col-md-6 col-lg-2');
-                        $('.day-block').append('<h4 class="temp"></h4>');
-                        $('.day-block').append('<h4 class="wind"></h4>');
-                        $('.day-block').append('<h4 class="humidity"></h4>');
-                        $('.day-block').append('<h4 class="date"></h4>');
-                        $('.temp').text('Temp: ' + data.list[i].main.temp);
-                        $('.wind').text('Wind: ' + data.list[i].wind.speed);
-                        $('.humidity').text('Humidity: ' + data.list[i].main.humidity);
+                        var card = $("<div>").addClass('day-block col-12 col-md-6 col-lg-2');
+                        card.append('<h4 class="temp">Temp: ' + data.list[i].main.temp + '</h4>');
+                        card.append('<h4 class="wind">Wind: ' + data.list[i].wind.speed + '</h4>');
+                        card.append('<h4 class="humidity">Humidity: ' + data.list[i].main.humidity + '</h4>');
+
                         var today = dayjs().add(1, 'day');
-                        $('.date').text(today.format('MM / D / YY'));
+                        card.append('<h6 class="date">' + today.format('MM / D / YY') + '</h6>');
+
+                        $(".forecast-block").append(card);
                     }
+
                 })
         }
         )
