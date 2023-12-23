@@ -9,8 +9,8 @@ Live page: https://morgs999.github.io/Weather-Dashboard/
 ## Usage
 Only plug in city names, do not include State, Province, Country Codes, etc.  Searches can be run without a page reload, and a list of recent searches is displayed below the search bar.
 
-![Before_Use]./Assets/Images/Before_Use.png
-![In_Use]./Assets/Images/In_Use.png
+![Before_Use](./Assets/Images/Before%20Use.png)
+![In_Use](./Assets/Images/In%20Use.png)
 
 ## Credits
 OpenWeatherAPI: https://openweathermap.org/

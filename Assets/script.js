@@ -4,7 +4,7 @@ var forecastBlockEL = $('.forecast-block');
 var dateRowEl = $('#date-row')
 var dayBlockEl = $('.day-block');
 citySearchEL.val("");
-
+let citySearches = []
 
 // Set Dates for 5 Day Forecast //
 for (var i = 0; i < 5; i++) {
@@ -33,16 +33,24 @@ let weather = function () {
                     return response.json();
                 })
                 .then(function (data) {
-                    // Display Weather Data to Single Day Forecast Block //
+                    // Uncomment Console Log below to sift through data for the city
+                    // console.log(data);
+                    // Display Weather Data to Single Day Forecast Block
+                    let todayCurrent = dayjs()
                     let singleCityEl = $('.single-city');
                     singleCityEl.html("");
+                    // Name
                     $('.single-city').append("<p class='bigger-block p-2'>" + data.name + "</p>");
+                    // Current Date
+                    $('.single-city').append("<p class='big-block'>" + todayCurrent.format('MM / D / YY') + "</p>");
+                    // Weather Icon
+                    $('.single-city').append("<img class='icon' src='https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png'>");
+                    // Current Temp
                     $('.single-city').append("<p class='big-block'>Current Temp: " + data.main.temp + " F</p>");
-                    $('.single-city').append("<p class='big-block'>Feels Like: " + data.main.feels_like + " F</p>");
-                    $('.single-city').append("<p class='big-block'>High: " + data.main.temp_max + " F</p>");
-                    $('.single-city').append("<p class='big-block'>Low: " + data.main.temp_min + " F</p>");
+                    // Humidity
                     $('.single-city').append("<p class='big-block'>Humidity: " + data.main.humidity + "%</p>");
-                    $('.single-city').append("<img src='https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png'>");
+                    // Wind Speed
+                    $('.single-city').append("<p class='big-block'>Wind Speed: " + data.wind.speed + " mph</p>");
 
 
                     // 5 Day Forecast // 
@@ -51,13 +59,21 @@ let weather = function () {
                             return response.json();
                         })
                         .then(function (data) {
+                            // Uncomment Console Log below to sift through data for the city
+                            // console.log(data);
                             // Iterate Cards for 5 Day Forecast //
                             forecastBlockEL.html("");
                             for (var i = 0; i < 40; i += 8) {
                                 var card = $("<div>").addClass('day-block col-12 col-md-6 col-lg-2');
+                                // Icon
+                                card.append("<img src='https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png'>");
+                                // Temperature
                                 card.append('<h4 class="temp">Temp: ' + data.list[i].main.temp + ' F</h4>');
+                                // Wind Speed
                                 card.append('<h4 class="wind">Wind: ' + data.list[i].wind.speed + ' mph</h4>');
+                                // Humidity
                                 card.append('<h4 class="humidity">Humidity: ' + data.list[i].main.humidity + '%</h4>');
+                                // Append each Card
                                 $(".forecast-block").append(card);
                             }
 
@@ -65,6 +81,10 @@ let weather = function () {
                 }
                 )
         })
+}
+
+function storeCitySearches() {
+    localStorage.setItem("citySearches", JSON.stringify(citySearches));
 }
 
 // Search Button Actions //
@@ -75,14 +95,13 @@ $(searchBtnEl).on('click', function () {
 
     // Save recent searches and wipe search input clean //
     let recentSearchButton = $("<button id='recent-search-button' class='recent-search-button btn btn-light col-12 m-2'></button>").text(citySearchEL.val());
-    $('#recent-search-button').addClass('onclick=convert(recentSearchButton.html())');
+    // $('#recent-search-button').addClass('onclick=convert(recentSearchButton.html())');
     $('.search-block').append(recentSearchButton);
 
+    let cityStore = document.getElementById('recent-search-button').textContent
+    citySearches.push(cityStore);
     citySearchEL.val("");
-})
+    storeCitySearches();
 
-// Reuse Recent Search Buttons //
-var recentSearchBtnEl = $('#recent-search-button');
-$(recentSearchBtnEl).on('click', function () {
-    console.log(recentSearchButton.html());
+
 })
