@@ -13,6 +13,12 @@ h4 {
     font-weight: 100;
 }
 
+#recent-searches-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 .single-city {
     border: 3px solid black;
     border-radius: 10px;

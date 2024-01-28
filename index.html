@@ -23,8 +23,10 @@
         <!-- SEARCH BLOCK -->
         <div class="col-12 col-md-4 col-lg-3 search-block">
             <h2>City Search</h2>
+
             <input type="text" class="form-control form-control-lg search" placeholder="Search for City"
                 id="city-search" name="city-search">
+            </input>
 
             <button type="button" class="btn btn-dark col-12 mt-3" id="search-button">
                 Search
@@ -37,16 +39,24 @@
                 </svg>
 
             </button>
+
             <hr>
+
+            <ul id="recent-searches-list">
+
+            </ul>
+            
         </div>
 
         <!-- CITY FORECAST BLOCK -->
         <div class="container col-12 col-md-8 col-lg-9 city">
 
+            <!-- Big Current Day Forecast -->
             <div class="container single-city">
                 <h4>Search for your city!</h4>
             </div>
 
+            <!-- 5 Day Forecast Cards -->
             <div class="container five-day">
                 <h5>5-Day Forecast</h5>
                 <div class="row forecast-block">
@@ -76,13 +86,13 @@
                         <h4 class="humidity">Humidity: </h4>
                     </card>
                 </div>
-                <div class="row date-block" id="date-row">
+                <!-- <div class="row date-block" id="date-row">
                     <card class="date-card col-12 col-md-6 col-lg-2"></card>
                     <card class="date-card col-12 col-md-6 col-lg-2"></card>
                     <card class="date-card col-12 col-md-6 col-lg-2"></card>
                     <card class="date-card col-12 col-md-6 col-lg-2"></card>
                     <card class="date-card col-12 col-md-6 col-lg-2"></card>
-                </div>
+                </div> -->
             </div>
 
         </div>
