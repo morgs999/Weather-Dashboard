@@ -3,27 +3,24 @@ var citySearchEL = $('#city-search');
 var searchesList = $("#recent-searches-list");
 var forecastBlockEL = $('.forecast-block');
 var dayBlockEl = $('.day-block');
+// Make City Search blank to begin
 citySearchEL.val("");
+// Initialize searches array for Local Storage
 let searches = [];
+
 
 // Render the cities searches as a list of buttons to be re-searched
 function renderSearches() {
-    searchesList.innerHTML = "";
-    let stored = JSON.parse(localStorage.getItem("city"));
+    // Reinitialize 'searchesList'
+    searchesList.html('');
     // Render a new li for each city searched
-    for (var i = 0; i < stored.length; i++) {
-        // console.log(search);
-        console.log(stored);
-        let li = $("<li>")
-        li.append("<button class='btn btn-dark col-12 mb-2 btn-search'>" + stored[i] + "</button>");
-        searchesList.append(li);
-    }
-    localStorage.clear();
-    localStorage.setItem("city", JSON.stringify(stored));
-
+    searches.forEach(function (search) {
+        let btn = $("<li><button class='btn btn-dark col-12 mb-2 btn-search'>" + search + "</button></li>");
+        searchesList.append(btn);
+    })
 }
 
-
+// Set up Local Storage via 'searches' array
 function storeSearches() {
     localStorage.setItem("city", JSON.stringify(searches));
 }
@@ -32,6 +29,8 @@ function storeSearches() {
 let weather = function () {
 
     let cityLocation = [];
+
+    // Add the city searched to Local Storage via 'searches' array
     searches.push(citySearchEL.val());
 
     // Fetch Weather Info based on City Name //
@@ -104,12 +103,23 @@ let weather = function () {
 }
 
 
-// Search Button Actions //
+// Search Button Actions
 $(searchBtnEl).on('click', function () {
-
-    // Run Main Function on Search Button Click //
-
+    // Run Main Function on Search Button Click
     weather(citySearchEL);
     storeSearches();
     renderSearches();
+    citySearchEL.val("");
+});
+
+// Recent Search Button Actions
+$(document).on('click', '.btn-search', function (event) {
+    let selectedCity = $(event.target);
+    let clickedCity = selectedCity.text();
+    citySearchEL.val(clickedCity);
+    // Run Main Function on Seach Button Click
+    weather(citySearchEL);
+    storeSearches();
+    renderSearches();
+    citySearchEL.val("");
 })
