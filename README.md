@@ -7,16 +7,16 @@ A web application that provides a user to search for their city, and return toda
 Live page: https://morgs999.github.io/Weather-Dashboard/
 
 ## Usage
-Only plug in city names, do not include State, Province, Country Codes, etc.  Searches can be run without a page reload, and a list of recent searches is displayed below the search bar.
+Only plug in city names, do not include State, Province, Country Codes, etc.  Searches can be run without a page reload, and a list of recent searches is displayed below the search bar, which can be clicked to be re-searched.
+<br><br>
 
-![Before Use](https://github.com/morgs999/Weather-Dashboard/assets/109176008/1732327e-ef97-4691-8b37-23dd4dfb68d1)
+#### App In Use
+![In Use](./Assets/Images/In%20Use.png)
 
-![In Use](https://github.com/morgs999/Weather-Dashboard/assets/109176008/6977940b-4e18-4c4f-a712-9ef115354029)
+### Credits
+OpenWeatherAPI: https://openweathermap.org/<br>
+Linear Gradient: https://cssgradient.io/<br>
 
-## Credits
-OpenWeatherAPI: https://openweathermap.org/
-Linear Gradient: https://cssgradient.io/
-Additional Code and Examples: https://github.com/DamirFM
 
-## License
+### License
 No License provided.
